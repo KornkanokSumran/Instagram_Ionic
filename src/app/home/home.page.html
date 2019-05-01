@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Instragram</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <!-- <p>
+      Sending a POST Request 
+  </p> -->
+  <ion-card *ngFor="let item of responses;">
+      <ion-item>
+        <img src="http://127.0.0.1:8000{{item.file}}">
+      </ion-item>
+      <ion-item>
+          <h4>{{item.caption}}</h4>
+      </ion-item>
+      <ion-item>
+          <ion-button  fill="clear" (click)="vote(item.id)">
+            <ion-icon size="large" name="heart" ></ion-icon>
+            <p *ngFor="let check of like;">
+              <ion-label slot="end" *ngIf=" check.name == item.id ">&ensp;{{check.count}}</ion-label>
+            </p>
+          </ion-button>
+          
+      </ion-item>
+      <p *ngFor="let text of comments;">
+          <ion-item *ngIf=" text.name == item.id ">
+            <ion-icon name="md-person"></ion-icon>
+              <ion-label> {{text.comment}}</ion-label>
+              
+          </ion-item>
+      </p>
+         
+      <ion-item>
+        <strong>Comment :</strong>
+        <ion-input [(ngModel)]="get_comment" type="text" name="get_comment" >
+        </ion-input>
+        <ion-button size="default" (click)='comment(item.id)'>submit</ion-button>
+      </ion-item>    
+  </ion-card>
+</ion-content>

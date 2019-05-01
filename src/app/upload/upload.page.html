@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Upload Page</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-item>
+  <ion-input [(ngModel)]="caption" type="text" placeholder="Insert Caption Here"></ion-input>
+  </ion-item>
+  <input type="file" accept="image/*" ng2FileSelect [uploader]="fileUploader" multiple />
+
+  <h2>Your files: {{ fileUploader?.queue?.length }}</h2>
+  <ul>
+    <li *ngFor="let item of fileUploader.queue">
+      {{ item?.file?.name }}
+    </li>
+  </ul>
+  <ion-button (click)="uploadFiles()">Upload files</ion-button>
+
+
+</ion-content>
+
